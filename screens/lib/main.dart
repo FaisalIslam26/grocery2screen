@@ -82,40 +82,89 @@ class _FavoriteState extends State<Favorite> {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: myFavoriteScreeen.length,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                ListTile(
-                  leading: Image.asset(myFavoriteScreeen[index].leading),
-                  title: Text(myFavoriteScreeen[index].title),
-                  subtitle: Text(myFavoriteScreeen[index].subtitle),
-                  trailing: Wrap(
-                    spacing: 12,
-                    alignment: WrapAlignment.start,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: myFavoriteScreeen.length,
+                itemBuilder: (context, index) {
+                  return Column(
                     children: [
-                      Text(myFavoriteScreeen[index].trailingText),
-                      Icon(myFavoriteScreeen[index].trailingIcon),
+                      ListTile(
+                        leading: Image.asset(myFavoriteScreeen[index].leading),
+                        title: Text(myFavoriteScreeen[index].title),
+                        subtitle: Text(myFavoriteScreeen[index].subtitle),
+                        trailing: Wrap(
+                          spacing: 12,
+                          alignment: WrapAlignment.start,
+                          children: [
+                            Text(myFavoriteScreeen[index].trailingText),
+                            Icon(myFavoriteScreeen[index].trailingIcon),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1,
+                        height: 10,
+                        color: Color(0xffE2E2E2),
+                      ),
                     ],
-                  ),
+                  );
+                }),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(double.infinity, 67.69),
+                primary: Color(0xFF53B175),
+                onPrimary: Color(0xFFFCFCFC),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(19),
                 ),
-                Divider(
-                  thickness: 1,
-                  height: 10,
-                  color: Color(0xffE2E2E2),
-                ),
-              ],
-            );
-          }),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyCart()));
+              },
+              child: const Text(
+                'Add All To Cart',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+        ],
+      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //     // backgroundColor: Colors.red,
+      //     fixedColor: Colors.black,
+      //     items: [
+      //       BottomNavigationBarItem(
+      //           icon: Icon(
+      //             Icons.home,
+      //             color: Colors.black,
+      //           ),
+      //           label: 'Shop'),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.home,
+      //           color: Colors.black,
+      //         ),
+      //         label: 'Explore',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         label: 'Cart',
+      //       ),
+      //       BottomNavigationBarItem(
+      //           icon: Icon(Icons.favorite), label: 'Favourite'),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.person),
+      //         label: 'Account',
+      //       ),
+      //     ]),
     );
   }
 }
-  // ElevatedButton(
-  //                   onPressed: () {
-  //                     Navigator.push(context,
-  //                         MaterialPageRoute(builder: (context) => MyCart()));
-  //                   },
-  //                   child: const Text('Add All To Cart'),
-  //                 ),
